@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>groupId</groupId>
+    <artifactId>SSM-SpringBoot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--
+        Spring Boot 父节点依赖，引入这个之后相关的依赖包就不需要添加version配置，Spring Boot会自动选择最合适的版本进行添加
+     -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--这里指定一下JDK的版本号，这里我们指定1.8,默认是1.6-->
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <!--
+            spring-boot-starter-web:为我们提供了MVC、AOP...的一系列依赖包
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!--
+                这里不需要<version></version>版本号，由于上面配置了<parent></parent>springBoot会为我们导入合适的版本号
+                -->
+        </dependency>
+
+        <!--
+            添加FastJSON依赖包
+            -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <!--这里要注意一下，必须指定1.2.15这个版本号-->
+            <version>1.2.15</version>
+        </dependency>
+
+        <!-- 添加MySQL的依赖包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- 添加Spring-data-jpa依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--添加 spring boot devtools 依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
+            <optional>true</optional>
+        </dependency>
+
+        <!-- 添加 servlet 的依赖包-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <!--
+                * compile，缺省值，适用于所有阶段，会随着项目一起发布。
+                * provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。
+                * runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。
+                * test，只在测试时使用，用于编译和运行测试代码。不会随项目发布。
+                * system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。
+            -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 添加 JSTL 标签库 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <!-- 添加 Tomcat 的支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <!--
+            spring boot mybatis依赖
+            请不要使用1.0.0版本，因为还不支持拦截器插件
+        -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <!--
+            MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
+            将其作为一个plugin装入到SqlSessionFactory中。
+            Github有位开发者写了一个分页插件，我觉得使用起来还可以，听方便的，
+            Github项目地址：https://github.com/pagehelper/Mybatis-PageHelper
+        -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+    </dependencies>
+
+    <!-- 构建节点 -->
+    <build>
+        <plugins>
+            <!-- 配置 spring boot plugin , 目前来说还没有效果 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
