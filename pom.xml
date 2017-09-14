@@ -78,6 +78,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- 添加 JSTL 标签库 -->
         <dependency>
             <groupId>javax.servlet</groupId>

@@ -21,7 +21,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableConfigurationProperties
 @ComponentScan(basePackages = { "com.cykj"})
-@MapperScan(basePackages = "com.cykj.mapper")
+@MapperScan(basePackages = "com.cykj.repository")
 public class App extends WebMvcConfigurerAdapter {
 
     @Override

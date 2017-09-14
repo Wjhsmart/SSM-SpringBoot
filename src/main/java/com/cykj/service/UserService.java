@@ -1,7 +1,7 @@
 package com.cykj.service;
 
 import com.cykj.bean.User;
-import com.cykj.mapper.UserMapper;
+import com.cykj.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

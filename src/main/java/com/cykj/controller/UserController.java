@@ -27,6 +27,7 @@ public class UserController {
         User user = new User();
         user.setId(1);
         user.setName("危锦辉");
+        user.setPassword("123456");
         user.setCreatedTime(new Date());
         return user;
     }
@@ -45,6 +46,7 @@ public class UserController {
     public int saveUser() {
         User user = new User();
         user.setName("张三");
+        user.setPassword("123456");
         user.setCreatedTime(new Date());
         return userService.insertUser(user);
     }
@@ -53,6 +55,7 @@ public class UserController {
     public int updateUser(String name) {
         User user = userService.queryByName(name);
         user.setName("李四");
+        user.setPassword("123456");
         user.setCreatedTime(new Date());
         return userService.updateUser(user);
     }

@@ -1,4 +1,4 @@
-package com.cykj.mapper;
+package com.cykj.repository;
 
 import com.cykj.bean.User;
 import org.apache.ibatis.annotations.Insert;
