@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Wjhsmart on 2017/7/25.
  */
-public interface UserMapper {
+public interface UserRepository {
 
     /**
      * 查询数据库所有用户信息
@@ -48,7 +48,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Insert("insert into t_user(name, createdTime) values(#{name}, #{createdTime})")
+    @Insert("insert into t_user(name, create_time, password, status) values(#{name}, #{createTime}, #{password}, #{status})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     public int insertUser(User user);
 
@@ -57,6 +57,6 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Update("update t_user set name = #{name}, createdTime = #{createdTime} where id = #{id}")
+    @Update("update t_user set name = #{name}, create_time = #{createTime}, password = #{password}, status = #{status} where id = #{id}")
     public int updateUser(User user);
 }

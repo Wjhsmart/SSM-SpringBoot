@@ -28,7 +28,7 @@ public class HelloController {
         User user = new User();
         user.setId(1);
         user.setName("危锦辉");
-        user.setCreatedTime(new Date());
+        user.setCreateTime(new Date());
         mav.addObject("user", user);
         mav.addObject("name", user.getName());
         return mav;

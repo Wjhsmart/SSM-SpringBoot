@@ -1,13 +1,12 @@
 package com.cykj.controller;
 
 import com.cykj.bean.User;
-import com.cykj.service.UserService;
+import com.cykj.enums.UserStatusEnum;
+import com.cykj.service.impl.UserServiceImpl;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
 public class UserController {
 
    @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public User getUser() {
@@ -28,7 +27,7 @@ public class UserController {
         user.setId(1);
         user.setName("危锦辉");
         user.setPassword("123456");
-        user.setCreatedTime(new Date());
+        user.setCreateTime(new Date());
         return user;
     }
 
@@ -37,8 +36,8 @@ public class UserController {
         return userService.queryAll();
     }
 
-    @RequestMapping("id/{id}")
-    public User queryById(@Param("id") Integer id) {
+    @RequestMapping("findOne/{id}")
+    public User findOne(@PathVariable("id") Integer id) {
         return userService.queryById(id);
     }
 
@@ -47,7 +46,8 @@ public class UserController {
         User user = new User();
         user.setName("张三");
         user.setPassword("123456");
-        user.setCreatedTime(new Date());
+        user.setStatus(UserStatusEnum.NORMAL.getCode());
+        user.setCreateTime(new Date());
         return userService.insertUser(user);
     }
 
@@ -56,7 +56,8 @@ public class UserController {
         User user = userService.queryByName(name);
         user.setName("李四");
         user.setPassword("123456");
-        user.setCreatedTime(new Date());
+        user.setStatus(UserStatusEnum.NORMAL.getCode());
+        user.setCreateTime(new Date());
         return userService.updateUser(user);
     }
 

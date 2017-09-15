@@ -1,5 +1,7 @@
 package com.cykj;
 
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -39,7 +41,8 @@ public class App extends WebMvcConfigurerAdapter {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         // 2、添加 fastJson 的配置信息，比如：是否需要格式化返回的json数据
         FastJsonConfig config = new FastJsonConfig();
-        config.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        // SerializerFeature.WriteMapNullValue值为null的也解析返回，SerializerFeature.PrettyFormat格式化返回的json字符串
+        config.setSerializerFeatures(SerializerFeature.WriteMapNullValue, SerializerFeature.PrettyFormat);
         // 3、设置 fastJson 返回的编码格式，防止中文乱码
         List<MediaType> mediaTypes = new ArrayList<MediaType>();
         mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);

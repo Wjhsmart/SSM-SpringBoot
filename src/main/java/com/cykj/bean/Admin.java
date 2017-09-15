@@ -1,23 +1,25 @@
 package com.cykj.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by Wjhsmart on 2017/7/24.
+ * Created by Wjhsmart on 2017/9/14.
  */
 @Entity
-@Table(name = "t_user")
-public class User {
+@Table(name = "t_admin")
+public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String password;
-    @JSONField(format="yyyy-MM-dd HH:mm")
+    @JSONField(format = "YYYY-MM-dd HH:mm")
+    private Date updateTime;
+    @JSONField(format = "YYYY-MM-dd HH:mm")
     private Date createTime;
     private String status;
 
@@ -43,6 +45,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Date getCreateTime() {
